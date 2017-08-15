@@ -1,6 +1,7 @@
 'use strict';
 
 window.renderStatistics = function (ctx, names, times) {
+  // рисуем облако
   ctx.beginPath();
   ctx.moveTo(110, 20);
 
@@ -58,7 +59,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillStyle = '#000000';
   ctx.font = '16px PT Mono';
   ctx.fillText('Список результатов:', 140, 50);
-
+  // гистограмма
   var max = -1;
   var histogramHeight = 150;
   var initialX = 150;
