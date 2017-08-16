@@ -49,14 +49,14 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.bezierCurveTo(80, 70, 80, 30, 100, 10);
 
   ctx.closePath();
-  ctx.fillStyle = '#ffffff';
+  ctx.fillStyle = '#fff';
   ctx.fill();
 
-  ctx.fillStyle = '#000000';
+  ctx.fillStyle = '#000';
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура вы победили!', 140, 30);
 
-  ctx.fillStyle = '#000000';
+  ctx.fillStyle = '#000';
   ctx.font = '16px PT Mono';
   ctx.fillText('Список результатов:', 140, 50);
   // гистограмма
@@ -66,7 +66,6 @@ window.renderStatistics = function (ctx, names, times) {
   var initialYForHistogram = 240;
   var histogramWidth = 40;
   var histogramIndent = 50;
-  var initialYForNames = 70;
 
   ctx.textBaseline = 'top';
 
@@ -75,17 +74,19 @@ window.renderStatistics = function (ctx, names, times) {
     if (time > max) {
       max = time;
     }
+  }
 
-    var step = histogramHeight / max;
+  var step = histogramHeight / max;
 
+  for (i = 0; i < times.length; i++) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
       ctx.fillStyle = 'rgba(0, 0, 255, ' + (Math.random()) + ')';
     }
     ctx.fillRect(initialX + (histogramWidth + histogramIndent) * i, initialYForHistogram, histogramWidth, times[i] * -step);
-    ctx.fillStyle = '#000000';
-    ctx.fillText(names[i], initialX + (histogramWidth + histogramIndent) * i, initialYForHistogram);
-    ctx.fillText(times[i].toFixed(), initialX + (histogramWidth + histogramIndent) * i, initialYForNames);
+    ctx.fillStyle = '#000';
+    ctx.fillText(names[i], initialX + (histogramWidth + histogramIndent) * i, initialYForHistogram + 10);
+    ctx.fillText(times[i].toFixed(), initialX + (histogramWidth + histogramIndent) * i, initialYForHistogram - 20 + times[i] * -step);
   }
 };
