@@ -1,11 +1,6 @@
 'use strict';
 
-var i = 0;
 var wizards = [];
-var indexes = [];
-var fullNames = [];
-var fullNamesArr = [];
-var randomArrIndex = [];
 
 var wizardsData = {
   WIZARD_NAMES: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
@@ -22,10 +17,11 @@ function getRandomVariable(wizardsAtribute) {
 }
 
 function getRandomArrIndex(wizardsAtribute, count) {
+  var randomArrIndex = [];
   while (randomArrIndex.length < count) {
     var randomNumber = Math.floor(Math.random() * wizardsAtribute.length);
     var foundedNumber = false;
-    for (i = 0; i < count; i++) {
+    for (var i = 0; i < count; i++) {
       if (randomArrIndex[i] === randomNumber) {
         foundedNumber = true;
         break;
@@ -39,22 +35,24 @@ function getRandomArrIndex(wizardsAtribute, count) {
 }
 
 function makeFullName(count) {
-  indexes = getRandomArrIndex(wizardsData.WIZARD_NAMES, count);
-  for (i = 0; i < count; i++) {
+  var fullNamesArr = [];
+  var indexes = getRandomArrIndex(wizardsData.WIZARD_NAMES, count);
+  for (var i = 0; i < count; i++) {
     fullNamesArr[i] = wizardsData.WIZARD_NAMES[indexes[i]] + ' ' + wizardsData.WIZARD_LAST_NAMES[indexes[i]];
   }
   return fullNamesArr;
 }
 
 function createWizardsData(count) {
-  fullNames = makeFullName(count);
-  for (var j = 0; j < count; j++) {
-    wizards[j] = {
-      name: fullNames[j],
+  var fullNames = makeFullName(count);
+  for (var i = 0; i < count; i++) {
+    wizards[i] = {
+      name: fullNames[i],
       coatColor: getRandomVariable(wizardsData.COLORS_OF_COAT),
       eyesColor: getRandomVariable(wizardsData.COLORS_OF_EYES)
     };
   }
+  return wizards;
 }
 
 function renderWizards() {
@@ -66,7 +64,7 @@ function renderWizards() {
   var similarListElement = document.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 
-  for (i = 0; i < wizards.length; i++) {
+  for (var i = 0; i < wizards.length; i++) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name;
     wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
