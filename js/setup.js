@@ -4,6 +4,8 @@ var i = 0;
 var wizards = [];
 var indexes = [];
 var fullNames = [];
+var fullNamesArr = [];
+var randomArrIndex = [];
 
 var wizardsData = {
   WIZARD_NAMES: ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'],
@@ -20,7 +22,6 @@ function getRandomVariable(wizardsAtribute) {
 }
 
 function getRandomArrIndex(wizardsAtribute, count) {
-  var randomArrIndex = [];
   while (randomArrIndex.length < count) {
     var randomNumber = Math.floor(Math.random() * wizardsAtribute.length);
     var foundedNumber = false;
@@ -38,7 +39,6 @@ function getRandomArrIndex(wizardsAtribute, count) {
 }
 
 function makeFullName(count) {
-  var fullNamesArr = [];
   indexes = getRandomArrIndex(wizardsData.WIZARD_NAMES, count);
   for (i = 0; i < count; i++) {
     fullNamesArr[i] = wizardsData.WIZARD_NAMES[indexes[i]] + ' ' + wizardsData.WIZARD_LAST_NAMES[indexes[i]];
