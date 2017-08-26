@@ -64,7 +64,7 @@ function createWizardsData(count) {
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
-// var setupUserName = setup.querySelector('.setup-user-name');
+var setupUserName = setup.querySelector('.setup-user-name');
 
 function showModal() {
   setup.classList.remove('hidden');
@@ -77,22 +77,34 @@ function modalEscHandler(evt) {
   }
 }
 
+// setupUserName.addEventListener('focus', setupUserName.setCustomValidity('Введите имя'), true);
+
+// function modalEscHandler(evt) {
+//   if (evt.keyCode === ESC_KEYCODE) {
+//     closeModal();
+//   }
+// }
+
 function closeModal() {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', modalEscHandler);
 }
 
 // function closeModal() {
-//   if (!setupUserName.onfocus) {
+//   if (setupUserName.blur) {
 //     setup.classList.add('hidden');
 //     document.removeEventListener('keydown', modalEscHandler);
-//   } else if (setupUserName.onfocus) {
+//   } else if (setupUserName.focus) {
 //     setupUserName.setCustomValidity('Введите имя');
 //   }
 // }
 
 // setupClose.addEventListener('click', function () {
 //   closeModal();
+// });
+
+// setupUserName.addEventListener('focus', function () {
+//   setupUserName.setCustomValidity('Введите имя');
 // });
 
 setupOpen.addEventListener('click', function () {
