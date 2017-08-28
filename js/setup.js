@@ -64,7 +64,6 @@ function createWizardsData(count) {
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
-// var setupUserName = setup.querySelector('.setup-user-name');
 var saveButton = setup.querySelector('.setup-submit');
 
 function showModal() {
@@ -73,36 +72,20 @@ function showModal() {
 }
 
 function modalEscHandler(evt) {
+  var isInputInactive = document.querySelector('.setup-user-name') !== document.activeElement;
   if (evt.keyCode === ESC_KEYCODE) {
-    closeModal();
+    if (isInputInactive) {
+      closeModal();
+    } else {
+      return;
+    }
   }
 }
 
-// function focusHandler() {
-//   document.addEventListener('focus', setupUserName.setCustomValidity('Введите имя'));
-// }
-
-// setupUserName.addEventListener('focus', setupUserName.setCustomValidity('Введите имя'), true);
-
 function closeModal() {
-  // if (setupUserName.focused === false) {
   setup.classList.add('hidden');
   document.removeEventListener('keydown', modalEscHandler);
-  // }
 }
-
-// function closeModal() {
-//   if (!setupUserName.focus) {
-//     setup.classList.add('hidden');
-//     document.removeEventListener('keydown', modalEscHandler);
-//   } else if (setupUserName.focus) {
-//     setupUserName.setCustomValidity('Введите имя');
-//   }
-// }
-
-// setupUserName.addEventListener('focus', function () {
-//   setupUserName.setCustomValidity('Введите имя');
-// });
 
 setupOpen.addEventListener('click', function () {
   showModal();
@@ -115,11 +98,7 @@ setupOpen.addEventListener('keydown', function (evt) {
 });
 
 setupClose.addEventListener('click', function () {
-  // if (!setupUserName.focus) {
   closeModal();
-  // } else if (setupUserName.focus) {
-  //   setupUserName.setCustomValidity('Введите имя');
-  // }
 });
 
 setupClose.addEventListener('keydown', function (evt) {
